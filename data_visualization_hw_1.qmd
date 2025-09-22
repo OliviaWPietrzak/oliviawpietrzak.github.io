@@ -1,0 +1,30 @@
+---
+title: "Data Visualization Homework 1"
+author: "Olivia Wilson-Pietrzak"
+format: html
+editor: visual
+---
+
+## Part 1: Anscombe Reading
+
+I think that the Anscombe reading is a good reminder to be meticulous in your data exploration before attempting analysis or visualization. Anscombe gives 4 example datasets whose summary statistics and logarithmic output looks very similar, but a simple scatterplot shows that the distribution of the data takes very different forms. I think that understanding the distribution is very important, particularly for data visualization; I normally try to incorporate some form of simple data visualization, like Anscombe's example of a scatterplot, as part of my initial data exploration process.
+
+## Part 2: New Fall Colors
+
+Below are two versions of the Fall exercise. I used a hex code to generate the color change for the first, and I used a [keyword](https://r-charts.com/colors/ "R Charts - Colors") to generate the color change for the second.
+
+[![Fall Colors edited using hex code (#800500).](images/Fall_colors_hex.png){fig-align="center"}](https://htmlcolorcodes.com/)
+
+[![Fall Colors edited using keyword (darkorange1).](images/Fall_colors_keyword.png)](https://r-charts.com/colors/)
+
+## Part 3: Chart Critique
+
+The chart I chose for critique is [The Changing Nature of Middle Class Jobs](https://www.nytimes.com/interactive/2015/02/23/business/economy/the-changing-nature-of-middle-class-jobs.html) by Gregor Aisch and Robert Gebeloff, published by The New York Times in February 2015. I think that this visualization does a good job of balancing complex data with a streamlined presentation.
+
+[![First Visualization from The Changing Nature of Middle Class Jobs](images/the_changing_nature_of_middle_class_jobs_ss.png){fig-align="center"}](https://www.nytimes.com/interactive/2015/02/23/business/economy/the-changing-nature-of-middle-class-jobs.html)
+
+An example image is shown above. While the visualization shows 6+ distinct variables (occupation sector, distinct occupations within a sector, 1980's and 2014 labor market share by number of roles for specific occupations, gender representation in specific occupations for each timeframe, and the change from 1980's to 2014 labor market shares both by number of roles and gender composition), as a reader, I never felt overwhelmed or overburdened by the visualization.
+
+I am still trying to get used to the idea of presenting so much information in a single visualization. I think that keeping the occupations grouped by subcategory, and having a gradient scale with no harsh colors, Aisch and Gebeloff are able to effectively convey trends within industries and well as trends for each individual occupation. I like that the legend is centered directly below the introductory text, so you have a clear idea of what role color plays in the visualization, and the axes' labels are clear (although it took me a moment to notice the scale of the y-axis...perhaps a slightly larger font would have been effective there?). They have several other visualizations within this article; I think that each is excellent in the simplicity of the data displayed.
+
+I think that developing discernment for this style of visualization will be an ongoing process for me. Typically, the visualizations I create for my work are very simple – I create data visualizations designed to help inform decision-making for a variety of stakeholders with varying levels of data literacy. Because of the broad scope of the visualizations and the varied end-users, I try to limit myself to 4 variables per visualization, and often keep visualizations at 2-3 variables. I find this to be more inclusive of all levels of data literacy, and also provides a type of built in check for me and my team – since we frequently hand projects off to one another, it is easy to see quickly if a count or rate is suspicious when the data is so aggregated.

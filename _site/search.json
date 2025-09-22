@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Hello!",
+    "section": "",
+    "text": "I’m Olivia Pietrzak, an aspiring data sciencist pursuing my master’s degree in Social Data Analytics and Research at the University of Texas at Dallas. I graduated with honors from the economics department at UTD in December 2022, and I currently work as a Data Analyst at Dallas College within the Strategic Research and Analytics department. In this role, I use data to help college leadership identify and dismantle barriers to student success.\nMy research passions converge at the crossroads of economic justice, education, and labor economics. I am excited to contribute to meaningful projects that make a positive impact, I am committed to leveraging data insights to drive positive change in these crucial areas.\nPlease feel free to connect with me on LinkedIn!"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Résumé",
+    "section": "",
+    "text": "Education\nMS, Social Data Analytics and Research, The University of Texas at Dallas\n\nAnticipated Graduation Date: Spring 2025\n\nBA, Economics, The University of Texas at Dallas, December 2022\n\nCum Laude, John Marshall Pre-Law Society\n\nAA, Government, Austin Community College, December 2020\n\nPhi Theta Kappa\n\nExperience\nData Analyst, Dallas College (February 2023 - present)\n\nUtilize SQL, Excel, and R to extract meaningful insights from large data sets.\nCreate visually compelling dashboards using Microsoft Power BI to facilitate data-driven discussions on student success metrics.\nManage and optimize databases, ensuring data integrity and accessibility for departmental research initiatives.\nCollaborate with cross-functional teams, providing analytic support and contributing to strategic initiatives.\nPrioritize and manage multiple projects concurrently, meeting tight deadlines and delivering high-quality results."
+  },
+  {
+    "objectID": "data_visualization_hw_1.html#part-2-new-fall-colors",
+    "href": "data_visualization_hw_1.html#part-2-new-fall-colors",
+    "title": "Data Visualization Homework 1",
+    "section": "Part 2: New Fall Colors",
+    "text": "Part 2: New Fall Colors\nBelow are two versions of the Fall exercise. I used a hex code to generate the color change for the first, and I used a keyword to generate the color change for the second.\n\n\n\nFall Colors edited using hex code (#800500).\n\n\n\n\n\nFall Colors edited using keyword (darkorange1)."
+  },
+  {
+    "objectID": "data_visualization_hw_1.html#part-3-chart-critique",
+    "href": "data_visualization_hw_1.html#part-3-chart-critique",
+    "title": "Data Visualization Homework 1",
+    "section": "Part 3: Chart Critique",
+    "text": "Part 3: Chart Critique\nThe chart I chose for critique is The Changing Nature of Middle Class Jobs by Gregor Aisch and Robert Gebeloff, published by The New York Times in February 2015. I think that this visualization does a good job of balancing complex data with a streamlined presentation.\n\n\n\nFirst Visualization from The Changing Nature of Middle Class Jobs\n\n\nAn example image is shown above. While the visualization shows 6+ distinct variables (occupation sector, distinct occupations within a sector, 1980’s and 2014 labor market share by number of roles for specific occupations, gender representation in specific occupations for each timeframe, and the change from 1980’s to 2014 labor market shares both by number of roles and gender composition), as a reader, I never felt overwhelmed or overburdened by the visualization.\nI am still trying to get used to the idea of presenting so much information in a single visualization. I think that keeping the occupations grouped by subcategory, and having a gradient scale with no harsh colors, Aisch and Gebeloff are able to effectively convey trends within industries and well as trends for each individual occupation. I like that the legend is centered directly below the introductory text, so you have a clear idea of what role color plays in the visualization, and the axes’ labels are clear (although it took me a moment to notice the scale of the y-axis…perhaps a slightly larger font would have been effective there?). They have several other visualizations within this article; I think that each is excellent in the simplicity of the data displayed.\nI think that developing discernment for this style of visualization will be an ongoing process for me. Typically, the visualizations I create for my work are very simple – I create data visualizations designed to help inform decision-making for a variety of stakeholders with varying levels of data literacy. Because of the broad scope of the visualizations and the varied end-users, I try to limit myself to 4 variables per visualization, and often keep visualizations at 2-3 variables. I find this to be more inclusive of all levels of data literacy, and also provides a type of built in check for me and my team – since we frequently hand projects off to one another, it is easy to see quickly if a count or rate is suspicious when the data is so aggregated."
+  },
+  {
+    "objectID": "data_visualization_hw_1.html",
+    "href": "data_visualization_hw_1.html",
+    "title": "Data Visualization Homework 1",
+    "section": "",
+    "text": "I think that the Anscombe reading is a good reminder to be meticulous in your data exploration before attempting analysis or visualization. Anscombe gives 4 example datasets whose summary statistics and logarithmic output looks very similar, but a simple scatterplot shows that the distribution of the data takes very different forms. I think that understanding the distribution is very important, particularly for data visualization; I normally try to incorporate some form of simple data visualization, like Anscombe’s example of a scatterplot, as part of my initial data exploration process."
+  },
+  {
+    "objectID": "data_visualization_hw_1.html#part-1-anscombe-reading",
+    "href": "data_visualization_hw_1.html#part-1-anscombe-reading",
+    "title": "Data Visualization Homework 1",
+    "section": "",
+    "text": "I think that the Anscombe reading is a good reminder to be meticulous in your data exploration before attempting analysis or visualization. Anscombe gives 4 example datasets whose summary statistics and logarithmic output looks very similar, but a simple scatterplot shows that the distribution of the data takes very different forms. I think that understanding the distribution is very important, particularly for data visualization; I normally try to incorporate some form of simple data visualization, like Anscombe’s example of a scatterplot, as part of my initial data exploration process."
+  }
+]

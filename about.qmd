@@ -1,0 +1,31 @@
+---
+title: "Résumé"
+---
+
+[**Education**]{.underline}
+
+MS, Social Data Analytics and Research, The University of Texas at Dallas
+
+-   Anticipated Graduation Date: Spring 2025
+
+BA, Economics, The University of Texas at Dallas, December 2022
+
+-   Cum Laude, John Marshall Pre-Law Society
+
+AA, Government, Austin Community College, December 2020
+
+-   Phi Theta Kappa
+
+[**Experience**]{.underline}
+
+Data Analyst, Dallas College (February 2023 - present)
+
+-   Utilize SQL, Excel, and R to extract meaningful insights from large data sets.
+
+-   Create visually compelling dashboards using Microsoft Power BI to facilitate data-driven discussions on student success metrics.
+
+-   Manage and optimize databases, ensuring data integrity and accessibility for departmental research initiatives.
+
+-   Collaborate with cross-functional teams, providing analytic support and contributing to strategic initiatives.
+
+-   Prioritize and manage multiple projects concurrently, meeting tight deadlines and delivering high-quality results.

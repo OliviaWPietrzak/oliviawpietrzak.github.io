@@ -1,0 +1,25 @@
+project:
+  type: website
+
+website:
+  title: "Olivia Wilson-Pietrzak"
+  navbar:
+    tools:
+      - icon: linkedin
+        href: https://www.linkedin.com/in/olivia-pietrzak-27768b244/
+    left:
+      - href: index.qmd
+        text: Home
+      - href: about.qmd
+        text: "Résumé"
+      - text: "EPPS 6356: Data Visualization"
+        menu:
+          - href: data_visualization_hw_1.qmd
+            text: Data Visualization Homework 1
+
+
+format:
+  html:
+    theme: yeti
+    css: styles.css
+    toc: true
