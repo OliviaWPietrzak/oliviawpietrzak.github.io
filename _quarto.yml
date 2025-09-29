@@ -16,6 +16,9 @@ website:
         menu:
           - href: data_visualization_hw_1.qmd
             text: Data Visualization Homework 1
+          - href: class_notes.qmd
+            text: Class Notes
+  
 
 
 format:

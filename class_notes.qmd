@@ -1,0 +1,90 @@
+---
+title: "Class Notes"
+editor: visual
+---
+
+## Lecture 4: Cognitive Science in Data Visualization
+
+-   Importance of negative space in visualizations (it can be useful, or it can be very difficult to decode)
+
+-   Importance of color in visualizations (again, it can help clarify or it can confuse)
+
+-   Importance of first letter in a word for fast identification of the word (goggle image example)
+
+-   Increased complexity in visualization = end-users spend additional attention on cognitive processing.
+
+    ![](images/clipboard-1279361569.png)
+
+For image above: Remember that these processes are siloed and that progress from one area to the next does not mean that your message will be decipherable to your end user.
+
+*Aside: Eye contact makes for a good presentation according to Dr. Ho. Eye contact = data collection.*
+
+**Nominalist approach/symbolic approach to data visualization**
+
+Understand the context of your audience; be mindful of your design choices (e.g., cultural sensitivity to particular colors, color-blindness, etc).
+
+### Visualization Stages
+
+1.       Collection and storage of data
+
+2.       Data transformation and preprocessing
+
+3.       Mapping data to a visualization
+
+4.       Human perception of visualization.
+
+### Semiotics of graphics
+
+Semiotics = study of symbols and how they convey meaning
+
+Worst case scenario: there is an increase in cognitive load without increase in information conveyed. Use semiotics to reduce this.
+
+Complexity = the connection between many different things and how they interact/influence each other
+
+Simplicity = the connection between a few things and how they interact/influence each other
+
+**Complexity and simplicity are relative to the user – they are not static characteristics**
+
+              Users gain more skill, technology grows
+
+              Things don’t always grow at the same rate; keep in mind what growth you anticipate
+
+              Their relationship depends on a lot of things (e.g., peoples' willingness to learn)
+
+### Cognitive Science Guidelines
+
+Important data elements should be represented by graphical elements that are visually more distinct than those representing less important information.
+
+              Color: not good for lots of categories
+
+              Different Shapes: better for lots of categories, may run out
+
+              Characters/Names: best for lots of categories
+
+Greater numerical values should be represented by more distinct graphical elements.
+
+Graphical symbol systems should be standardized within and across applications.
+
+Choose the most efficient tool for a task.
+
+-   *Would you use Illustrator or Excel to generate a basic bar chart?*
+
+Only go for novelty when the anticipated payoff is greater than the cost. Otherwise stick with the tried and true.
+
+Effort spent needs to be proportional to the payoff/profits.
+
+-   *Ask yourself: Is this worth the effort?*
+
+**Perception can be learned.**
+
+### Functionalism
+
+User, Designer, and Scientist
+
+-   Each role has different skill-set and role within the visualization process
+
+Elements of the graphic
+
+Angular data encoding is not effective – try not to use pie charts.
+
+-   Only when you have a clear majority or plurality
