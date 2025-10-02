@@ -1,0 +1,64 @@
+---
+title: "Data Visualization Homework 2"
+author: "Olivia Wilson-Pietrzak"
+editor: visual
+format:
+  html:
+    code-fold: true
+    code-summary: "Show code"
+    code-tools: true
+---
+
+### Question 1
+
+You can change the pch in the plot command. [Pch stands for plot character, and there are over 250 options (1-25 are standard vector and R symbols).](https://r-charts.com/base-r/pch-symbols/) You can also change the color and size of the pch points using the col, bg, and cex commands (see below).
+
+The numbers in front of the graph title change the location of the graph title within the box. The command will not display text outside of the graph box.
+
+```{r}
+plot(pressure, pch = 5)  # Can you change pch?
+plot(pressure, pch = 15, col = "blue")
+plot(pressure, pch = 25, bg = "pink", col = "blue", cex = 3)
+plot(pressure, pch = 125)
+
+text(150, 600, 
+     "Pressure (mm Hg)\nversus\nTemperature (Celsius)")
+```
+
+### Question 2
+
+```{r}
+# Setting the parameter (3 rows by 2 cols)
+par(mfrow=c(3, 2))
+
+# Scatterplot
+# Note the incremental additions
+
+x <- c(0.5, 2, 4, 8, 12, 16)
+y1 <- c(1, 1.3, 1.9, 3.4, 3.9, 4.8)
+y2 <- c(4, .8, .5, .45, .4, .3)
+
+# Setting label orientation, margins c(bottom, left, top, right) & text size
+par(las=1, mar=c(4, 4, 2, 4), cex=.7) 
+plot.new()
+plot.window(range(x), c(0, 6))
+lines(x, y1)
+lines(x, y2)
+points(x, y1, pch=16, cex=2) # Try different cex value?  
+points(x, y2, pch=21, bg="white", cex=2)  # Different background color
+par(col="gray50", fg="gray50", col.axis="gray50")
+axis(1, at=seq(0, 16, 4)) # What is the first number standing for?
+axis(2, at=seq(0, 6, 2))
+axis(4, at=seq(0, 6, 2))
+box(bty="u")
+mtext("Travel Time (s)", side=1, line=2, cex=0.8)
+mtext("Responses per Travel", side=2, line=2, las=0, cex=0.8)
+mtext("Responses per Second", side=4, line=2, las=0, cex=0.8)
+text(4, 5, "Bird 131")
+par(mar=c(5.1, 4.1, 4.1, 2.1), col="black", fg="black", col.axis="black")
+
+```
+
+```{r}
+
+```
