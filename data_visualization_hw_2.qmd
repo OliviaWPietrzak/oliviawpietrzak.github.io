@@ -17,9 +17,7 @@ The numbers in front of the graph title change the location of the graph title w
 
 ```{r}
 plot(pressure, pch = 5)  # Can you change pch?
-plot(pressure, pch = 15, col = "blue")
 plot(pressure, pch = 25, bg = "pink", col = "blue", cex = 3)
-plot(pressure, pch = 125)
 
 text(150, 600, 
      "Pressure (mm Hg)\nversus\nTemperature (Celsius)")
