@@ -111,15 +111,7 @@ col = "#624f6d"
 
 ### Use different font (ggplot2)
 
-```{r}
-geom_text(
-    aes(label = value),
-    color = dat$text_color, #change the text color
-    size = 8, #change the font size
-    fontface = 'bold', #change the font format
-    family = 'Source Sans Pro' #change the font
-  )
-```
+geomtext has the command family that lets you switch the font.
 
 ### Non-default colors (ggplot2)
 
@@ -137,11 +129,11 @@ scale_shape_manual()...? Need to do more research/testing.
 #############################
 # 
 # ## Download COVID data from OWID GitHub
-# owidall = read.csv("https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv?raw=true")
+ owidall = read.csv("https://github.com/owid/covid-19-data/blob/master/public/data/owid-covid-data.csv?raw=true")
 # #Deselect cases/rows with OWID
-# owidall = owidall[!grepl("^OWID", owidall$iso_code), ]
+ owidall = owidall[!grepl("^OWID", owidall$iso_code), ]
 # # Subset by continent: Europe
-# owideu = subset(owidall, continent=="Europe")
+ owideu = subset(owidall, continent=="Europe")
 
 #############################################################
 # Step 1: Transform the date data and get the subset needed.#
