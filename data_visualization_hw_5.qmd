@@ -1,0 +1,525 @@
+---
+title: "Data Visualization Homework 5"
+author: "Olivia Pietrzak"
+format: 
+  html:
+    code-fold: true
+    code-summary: "Show Code"
+    code-tools: true
+editor: visual
+---
+
+**The dataset used in this assignment was sourced here: <https://github.com/benc0x/NBA-Data-Analysis-2024-2025>**
+
+## Question 1 - Base R Visualizations
+
+### Code
+
+```{r}
+#| eval: false
+library(tidyverse)
+library(readxl)
+library(janitor)
+df <- read_xlsx("2024-25 NBA Player Stats.xlsx", sheet = "Averages")
+players <- clean_names(
+                        df[df$Player %in% c('Luka Dončić', 
+                                             'Nikola Jokić', 
+                                             'Shai Gilgeous-Alexander',
+                                             'Giannis Antetokounmpo',
+                                             'Joel Embiid',
+                                             'Jayson Tatum',
+                                             'Lebron James',
+                                             'Kevin Durant',
+                                             'Stephen Curry',
+                                             'Anthony Edwards',
+                                             'Jimmy Butler',
+                                             'Kawhi Leonard',
+                                             'Myles Turner',
+                                             'Jalen Brunson',
+                                             'Victor Wembanyama',
+                                             'Anthony Davis'
+                                             ), 
+                           ]
+                      )
+players <- players %>%
+                      mutate(across(where(is.numeric), ~ floor(. * 10) / 10))
+
+east_teams <- c("BOS", "PHI", "NYK", "BKN", "TOR", "MIL", "CLE", "IND", 
+                "CHI", "ATL", "MIA", "ORL", "WAS", "CHA", "DET")
+players <- players %>%
+                        mutate(conference = case_when(team %in% east_teams ~ "Eastern",
+                                                      TRUE ~ "Western"
+                                                      )
+                               )
+players <- players %>%
+                      mutate(conference_cd = case_when(conference == "Eastern" ~ "1",
+                                                        TRUE ~ "2"
+                                                      )
+                            )
+
+###########
+#Histogram#
+###########
+hist(players$age, 
+    col = "lightblue", 
+     main = paste("Histogram of NBA Player Age"),
+     xlab = "Age",
+     ylab = "Frequency",
+     ylim = c(0, 8),
+     labels = TRUE)
+hist(players$minutes_per_game,
+     col = "lightgreen", 
+     main = paste("Histogram of NBA Players' Average Minutes Played Per Game"),
+     xlab = "Average Minutes Played",
+     ylab = "Frequency",
+     ylim = c(0, 5),
+     labels = TRUE)
+hist(players$points_per_game,
+     col = "lightpink",
+     main = paste("Histogram of NBA Players' Average Points Per Game"),
+     xlab = "Average Points Per Game",
+     ylab = "Frequency",
+     ylim = c(0, 7),
+     labels = TRUE
+     )
+
+###################
+#Verical Bar Chart#
+###################
+?barplot
+par(mar = c(8, 4, 4, 2))
+bp_age <- barplot(players$age,
+                  names.arg = players$player,
+                  horiz = FALSE,
+                  col = "lightblue",
+                  main = "NBA Players' Age",
+                  cex.names = 0.5,
+                  las = 2,
+                  ylab = "Age",
+                  ylim = c(0, 45)
+                  )
+text(x = bp_age,         
+     y = players$age,           
+     labels = players$age,       
+     pos = 3,                     
+     cex = 0.8) 
+mtext("NBA Player", side = 1, line = 6)
+
+######################
+#Horizontal Bar Chart#
+######################
+par(mar = c(4, 8, 4, 2))
+bp_mpg <- barplot(players$minutes_per_game,
+                  names.arg = players$player,
+                  horiz = TRUE,
+                  col = "lightgreen",
+                  main = "NBA Players' Average Minutes Per Game",
+                  cex.names = 0.5,
+                  las = 1,
+                  xlab = "Average Minutes Per Game",
+                  xlim = c(0, 45)
+)
+text(x = players$minutes_per_game+2,         
+     y = bp_mpg,           
+     labels = players$minutes_per_game,       
+     cex = 0.8) 
+mtext("NBA Player", side = 2, line = 6)
+
+############
+# Pie Chart#
+############
+?pie
+conference_counts <- table(players$conference)
+par(mar = c(2, 2, 4, 2))
+pie(conference_counts,
+    main = "NBA Player Count by Conference",
+    col = c("lightpink","lightblue"),
+    labels = paste(names(conference_counts), "  (", conference_counts, ")")
+)
+
+###########
+# Box Plot#
+###########
+?boxplot
+df_boxplot <- clean_names(df[df$Team %in% players$team, ] )
+team_colors_vibrant <- c(
+  "BOS" = "#008348",    # Celtics Green
+  "DAL" = "#0053BC",    # Mavs Blue
+  "DEN" = "#8B2131",    # Nuggets Gold
+  "GSW" = "#FFC72C",    # Warriors Gold
+  "IND" = "#002D62",    # Pacers Gold
+  "LAC" = "#C8102E",    # Clippers Red
+  "LAL" = "#552583",    # Lakers Gold
+  "MIL" = "#00471B",    # Bucks Green
+  "MIN" = "#78BE20",    # Timberwolves Green
+  "NYK" = "#F58426",    # Knicks Orange
+  "OKC" = "#EF3B24",    # Thunder Orange
+  "PHI" = "#ED174C",    # 76ers Red
+  "PHO" = "#1d1160",    # Suns Purple
+  "SAS" = "#C4CED4"     # Spurs Black
+)
+par(mar = c(4, 4, 2, 2))
+boxplot(df_boxplot$points_per_game~df_boxplot$team,
+        cex.axis = 0.5,
+        col = team_colors_vibrant,
+        xlab = "NBA Team",
+        ylab = "Average Points Per Game Per Player",
+        main = "Distribution of Average Points Per Game by NBA Team"
+        )
+
+##############
+# Scatterplot#
+##############
+?plot
+player_colors_vibrant <- c(
+  'Luka Dončić'= "#552583", 
+  'Nikola Jokić'= "#8B2131", 
+  'Shai Gilgeous-Alexander' = "#EF3B24",
+  'Giannis Antetokounmpo'= "#00471B",
+  'Joel Embiid' = "#ED174C",
+  'Jayson Tatum' = "#008348",
+  'Lebron James'= "#552583",
+  'Kevin Durant' = "#1d1160",
+  'Stephen Curry'= "#FFC72C",
+  'Anthony Edwards'= "#78BE20",
+  'Jimmy Butler'= "#FFC72C",
+  'Kawhi Leonard'= "#C8102E",
+  'Myles Turner'= "#002D62",
+  'Jalen Brunson'= "#F58426",
+  'Victor Wembanyama' = "#C4CED4",
+  'Anthony Davis'= "#0053BC"
+)
+sp_mppg <- plot(players$minutes_per_game, players$points_per_game,
+                pch = 16,
+                cex = 2,
+                xlab = "Average Minutes Played Per Game",
+                xlim = c(30, 38),
+                ylab = "Average Points Scored Per Game",
+                ylim = c(17, 33),
+                col = player_colors_vibrant[players$player],
+                main = "Average Points Per Game By Average Minutes Per Game"
+                )
+text(x = players$minutes_per_game+0.5,         
+     y = players$points_per_game,           
+     labels = players$player,       
+     cex = 0.5) 
+
+```
+
+### Visualizations
+
+![](images/base_histogram.jpeg){fig-align="center"}
+
+![](images/base_vert_bar.jpeg){fig-align="center"}
+
+![](images/base_horz_bar.jpeg){fig-align="center"}
+
+![](images/base_pie.jpeg){fig-align="center"}
+
+![](images/base_box.jpeg){fig-align="center"}
+
+![](images/base_scatter.jpeg){fig-align="center"}
+
+## Question 2 - ggplot2 Visualizations
+
+### Code
+
+```{r}
+#| eval: false
+library(tidyverse)
+library(readxl)
+library(janitor)
+df <- read_xlsx("2024-25 NBA Player Stats.xlsx", sheet = "Averages")
+players <- clean_names(
+                        df[df$Player %in% c('Luka Dončić', 
+                                             'Nikola Jokić', 
+                                             'Shai Gilgeous-Alexander',
+                                             'Giannis Antetokounmpo',
+                                             'Joel Embiid',
+                                             'Jayson Tatum',
+                                             'Lebron James',
+                                             'Kevin Durant',
+                                             'Stephen Curry',
+                                             'Anthony Edwards',
+                                             'Jimmy Butler',
+                                             'Kawhi Leonard',
+                                             'Myles Turner',
+                                             'Jalen Brunson',
+                                             'Victor Wembanyama',
+                                             'Anthony Davis'
+                                             ), 
+                           ]
+                      )
+players <- players %>%
+                      mutate(across(where(is.numeric), ~ floor(. * 10) / 10))
+
+east_teams <- c("BOS", "PHI", "NYK", "BKN", "TOR", "MIL", "CLE", "IND", 
+                "CHI", "ATL", "MIA", "ORL", "WAS", "CHA", "DET")
+players <- players %>%
+                        mutate(conference = case_when(team %in% east_teams ~ "Eastern",
+                                                      TRUE ~ "Western"
+                                                      )
+                               )
+players <- players %>%
+                      mutate(conference_cd = case_when(conference == "Eastern" ~ "1",
+                                                        TRUE ~ "2"
+                                                      )
+                            )
+##########################################################################################################
+##GGPLOT2
+##########################################################################################################
+install.packages("extrafont")
+library(extrafont)
+#font_import()
+#loadfonts()
+#fonts()[grep("Trebuchet MS", fonts())]
+
+brand_colors <- c(
+  primary = "#0F62FE",      
+  secondary = "#8A3FFC",    
+  accent1 = "#33B1FF",      
+  accent2 = "#002D9C",      
+  neutral = "#525252",      
+  background1 = "#F4F4F4",    
+  background2 = "#D4B8FE",
+  background3 = "#C4DBFF"
+)
+
+###########
+#Histogram#
+###########
+ggplot(data = players, aes(age)) + 
+  geom_histogram(
+                 binwidth = 2, 
+                 linewidth = 0.75,
+                 col = brand_colors["neutral"],     
+                 fill = brand_colors["background3"]) +
+            labs(
+                 title = "NBA Player Age Distribution",
+                 x = "Age",
+                 y = "Frequency") +
+    theme_minimal(
+                  base_family = "Trebuchet MS") +
+            theme(
+                  panel.grid = element_blank(), 
+                  panel.border = element_rect(color = brand_colors["neutral"], fill = NA, linewidth = .75),
+                  plot.title = element_text(hjust = 0.5, family = "Trebuchet MS", size = 16),
+                  axis.text = element_text(family = "Trebuchet MS", color = brand_colors["neutral"], size = 10))
+
+###################
+#Verical Bar Chart#
+###################
+#Gradient
+ggplot(data = players, aes(x = reorder(player, age), y = age, fill = age)) +
+        geom_col(
+                  col = brand_colors["neutral"],
+                  linewidth = .75) +
+  scale_fill_gradient(low = brand_colors[["background3"]], high = brand_colors[["primary"]])+
+      geom_text(aes(label = age), 
+                vjust = -0.5,                    
+                size = 3,                       
+                family = "Trebuchet MS")+
+          ylim (0, 40) +
+            labs(
+                  title = "NBA Player Age",
+                  x = "NBA Player",
+                  y = "Age") +
+    theme_minimal(
+                  base_family = "Trebuchet MS") +
+            theme(
+                  panel.grid = element_blank(), 
+                  panel.border = element_rect(color = brand_colors["neutral"], fill = NA, linewidth = .75),
+                  plot.title = element_text(hjust = 0.5, family = "Trebuchet MS", size = 16),
+                  axis.text = element_text(angle = 90, family = "Trebuchet MS", color = brand_colors["neutral"], size = 10),
+                  legend.position = "none")
+
+#Single Color
+ggplot(data = players, aes(x = reorder(player, age), y = age)) +
+  geom_col(
+    col = brand_colors["neutral"],
+    fill = brand_colors["background3"],
+    linewidth = .75) +
+  geom_text(aes(label = age), 
+            vjust = -0.5,                    
+            size = 3,                       
+            family = "Trebuchet MS")+
+  ylim (0, 40) +
+  labs(
+    title = "NBA Player Age",
+    x = "NBA Player",
+    y = "Age") +
+  theme_minimal(
+    base_family = "Trebuchet MS") +
+  theme(
+    panel.grid = element_blank(), 
+    panel.border = element_rect(color = brand_colors["neutral"], fill = NA, linewidth = .75),
+    plot.title = element_text(hjust = 0.5, family = "Trebuchet MS", size = 16),
+    axis.text = element_text(angle = 90, family = "Trebuchet MS", color = brand_colors["neutral"], size = 10),
+    legend.position = "none")
+
+######################
+#Horizontal Bar Chart#
+######################
+#Gradient
+ggplot(data = players, aes(x = minutes_per_game, y = reorder(player, -minutes_per_game))) +
+    geom_col(aes(fill = minutes_per_game),
+             col = brand_colors["neutral"],
+             linewidth = .75) +
+      scale_fill_gradient(low = "#D4B8FE", high = "#8A3FFC")+
+  xlim (0, 40)+
+  geom_text(aes(label = minutes_per_game), 
+            hjust = -0.2,
+            size = 3,                       
+            family = "Trebuchet MS")+
+      labs(
+        title = "Average Minutes Per Game by NBA Player",
+        x = "Average Minutes Per Game",
+        y = "NBA Player") +
+      theme_minimal(
+        base_family = "Trebuchet MS") +
+      theme(
+        panel.grid = element_blank(), 
+        panel.border = element_rect(color = brand_colors["neutral"], fill = NA, linewidth = .75),
+        plot.title = element_text(hjust = 0.5, family = "Trebuchet MS", size = 16),
+        axis.text = element_text(family = "Trebuchet MS", color = brand_colors["neutral"], size = 10),
+        legend.position = "none")
+
+#Single Color
+ggplot(data = players, aes(x = minutes_per_game, y = reorder(player, -minutes_per_game))) +
+  geom_col(fill = brand_colors["background3"],
+           col = brand_colors["neutral"],
+           linewidth = .75) +
+  xlim (0, 40)+
+  geom_text(aes(label = minutes_per_game), 
+            hjust = -0.2,
+            size = 3,                       
+            family = "Trebuchet MS")+
+  labs(
+    title = "Average Minutes Per Game by NBA Player",
+    x = "Average Minutes Per Game",
+    y = "NBA Player") +
+  theme_minimal(
+    base_family = "Trebuchet MS") +
+  theme(
+    panel.grid = element_blank(), 
+    panel.border = element_rect(color = brand_colors["neutral"], fill = NA, linewidth = .75),
+    plot.title = element_text(hjust = 0.5, family = "Trebuchet MS", size = 16),
+    axis.text = element_text(family = "Trebuchet MS", color = brand_colors["neutral"], size = 10),
+    legend.position = "none")
+############
+# Pie Chart#
+############
+conf_data <- players %>%
+                        count(conference)
+print(conf_data$conference)
+ggplot(conf_data, aes(x = "", y = n, fill = conference)) +
+  geom_col(color = "white", linewidth = .7) +
+  geom_text(aes(label = n),
+            position = position_stack(vjust = 0.5),
+            size = 5,
+            family = "Trebuchet MS",
+            color = "white",
+            fontface = "plain") +
+  coord_polar("y", start = 0) +
+  scale_fill_manual(values = c("Eastern" = brand_colors[["primary"]], 
+                               "Western" = brand_colors[["secondary"]])) +
+  labs(title = "NBA Players by Conference",
+       fill = "Conference") +
+  theme_void(base_family = "Trebuchet MS") +
+  theme(
+        plot.title = element_text(hjust = 0.5, size = 16)
+        )
+
+###########
+# Box Plot#
+###########
+#Team Colors
+ggplot(data = df_boxplot, aes(x = team, y = points_per_game, fill = team)) +
+  geom_boxplot(color = brand_colors[["neutral"]],
+               linewidth = 0.8) +
+  scale_fill_manual(values = team_colors_vibrant) + 
+  labs(title = "Average Points Per Game Distribution by NBA Team",
+       x = "NBA Team",
+       y = "Average Points Per Game") +
+  theme_minimal(base_family = "Trebuchet MS") +
+  theme(panel.grid = element_blank(),
+        panel.border = element_rect(color = brand_colors[["neutral"]], 
+                                    fill = NA, 
+                                    linewidth = 0.75),
+        plot.title = element_text(hjust = 0.5, size = 16),
+        axis.title = element_text(face = "plain"),
+        axis.text.x = element_text(vjust = 0.5, hjust = 1, size = 9),
+        axis.text = element_text(color = brand_colors[["neutral"]]),
+        legend.position = "none")
+
+#Single Color
+ggplot(data = df_boxplot, aes(x = team, y = points_per_game)) +  # Added closing )
+  geom_boxplot(color = brand_colors[["neutral"]],
+               fill = brand_colors[["background3"]],
+               linewidth = 0.8) +
+  labs(title = "Average Points Per Game Distribution by NBA Team",
+       x = "NBA Team",
+       y = "Average Points Per Game") +
+  theme_minimal(base_family = "Trebuchet MS") +
+  theme(panel.grid = element_blank(),
+        panel.border = element_rect(color = brand_colors[["neutral"]], 
+                                    fill = NA, 
+                                    linewidth = 0.75),
+        plot.title = element_text(hjust = 0.5, size = 16),
+        axis.title = element_text(face = "plain"),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 9),  # Added angle = 90
+        axis.text = element_text(color = brand_colors[["neutral"]])
+        )
+  
+##############
+# Scatterplot#
+##############
+nba_scatterplot <- ggplot(data = players, aes(x = minutes_per_game, y = points_per_game, color = player)) +
+  geom_point(size = 4) + 
+  scale_color_manual(values = player_colors_vibrant) + 
+  geom_text(aes(label = player),
+            hjust = -0.1,
+            vjust = 0.5,
+            size = 3,
+            family = "Trebuchet MS") +
+  labs(title = "Average Minutes Per Game by Average Points Per Game",
+       x = "Average Minutes Per Game",
+       y = "Average Points Per Game") +
+  xlim (30, 38)+
+  theme_minimal(base_family = "Trebuchet MS") +
+  theme(panel.grid = element_blank(),
+        panel.border = element_rect(color = brand_colors[["neutral"]], 
+                                    fill = NA, 
+                                    linewidth = 0.75),
+        plot.title = element_text(hjust = 0.5, size = 16),
+        axis.title = element_text(face = "plain"),
+        legend.position = "none")
+```
+
+### Visualizations
+
+![](images/ggplot_histogram.jpeg){fig-align="center"}
+
+![](images/ggplot_vert_bar_1.jpeg){fig-align="center"}
+
+![](images/ggplot_vert_bar_2.jpeg){fig-align="center"}
+
+![](images/ggplot_horz_bar_1.jpeg){fig-align="center"}
+
+![](images/ggplot_horz_bar_2.jpeg){fig-align="center"}
+
+![](images/ggplot_pie.jpeg){fig-align="center"}
+
+![](images/ggplot_box1.jpeg){fig-align="center"}
+
+![](images/ggplot_box_2.jpeg){fig-align="center"}
+
+![](images/ggplot_scatter.jpeg){fig-align="center"}
+
+### Question 3 - Export Options
+
+You can use ggsave with the file option you'd like.
+
+Example: ggsave("nba_scatterplot.jpeg", plot = nba_scatterplot, width = 8, height = 6, dpi = 300).
+
+You can also select "Export" from the Plot viewing window.
