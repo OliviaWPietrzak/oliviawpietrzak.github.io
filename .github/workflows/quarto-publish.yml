@@ -19,13 +19,9 @@ jobs:
           r-version: '4.3.2'
       
       - name: Install R packages
-        uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          packages: |
-            any::tidyverse
-            any::readxl
-            any::janitor
-            any::extrafont
+        run: |
+          install.packages(c("tidyverse", "readxl", "janitor", "extrafont"))
+        shell: Rscript {0}
         
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
